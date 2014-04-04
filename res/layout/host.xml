@@ -7,16 +7,14 @@
     android:orientation="vertical"
     android:background="#ffffff">
 
-    <CheckBox 
-        android:id="@+id/ishostCB"
+	    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="are you the host?"/>
-    <ListView 
-        android:id="@+id/bluetoothList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        
-    </ListView>
+        android:text="host"/>
+	   	<Button 
+	        android:id="@+id/startSending"
+	        android:text="start sending"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"/>
 
 </LinearLayout>
