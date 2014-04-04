@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import com.example.virtualplayground.R;
 import com.example.virtualplayground.R.id;
@@ -32,6 +33,7 @@ import android.widget.SimpleAdapter;
 
 public class Host extends Activity {
 
+	public static String uuid = "90e74ea0-bc15-11e3-a5e2-0800200c9a66";
 	private BluetoothAdapter mBluetoothAdapter = null;
 	AcceptThread trd = null;
 
@@ -69,12 +71,13 @@ public class Host extends Activity {
 			BluetoothServerSocket tmp = null;
 			try {
 
-				Method getUuidsMethod = BluetoothAdapter.class.getDeclaredMethod("getUuids", null);
+				//Method getUuidsMethod = BluetoothAdapter.class.getDeclaredMethod("getUuids", null);
 
-				ParcelUuid[] uuids = (ParcelUuid[]) getUuidsMethod.invoke(mBluetoothAdapter, null);
+				//ParcelUuid[] uuids = (ParcelUuid[]) getUuidsMethod.invoke(mBluetoothAdapter, null);
 
 				// MY_UUID is the app's UUID string, also used by the client code
-				tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord("VirtualPlayground", uuids[0].getUuid());
+				UUID a = UUID.fromString(uuid);
+				tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord("VirtualPlayground", a);
 			} catch (Exception e) {
 			}
 			mmServerSocket = tmp;

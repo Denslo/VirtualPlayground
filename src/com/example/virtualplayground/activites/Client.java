@@ -77,7 +77,7 @@ public class Client extends Activity {
 	        // Get a BluetoothSocket to connect with the given BluetoothDevice
 	        try {
 	            // MY_UUID is the app's UUID string, also used by the server code
-	            tmp = device.createRfcommSocketToServiceRecord(uuid);
+	            tmp = device.createRfcommSocketToServiceRecord(UUID.fromString(Host.uuid));
 	        } catch (IOException e) { }
 	        mmSocket = tmp;
 	    }
