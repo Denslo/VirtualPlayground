@@ -3,6 +3,7 @@ package com.example.virtualplayground;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.bluetooth.BluetoothAdapter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main_activity);
 		
-		Button btn = (Button)findViewById(R.id.button1);
+		BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		if (mBluetoothAdapter == null) {
+		    // Device does not support Bluetooth
+		}
 	}
 }
