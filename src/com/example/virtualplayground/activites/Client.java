@@ -102,12 +102,12 @@ public class Client extends Activity {
 			try {
 				is = mSocket.getInputStream();
 				os = mSocket.getOutputStream();
-				while(true) {
+				//while(true) {
 		    		byte[] buffer = new byte[8];
 		    		is.read(buffer);
 		    		os.write(buffer);
 		    		
-		    	}
+		    	//}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

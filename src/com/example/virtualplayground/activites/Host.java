@@ -123,7 +123,10 @@ public class Host extends Activity {
 					is = socket.getInputStream();
 		    		byte[] buffer = new byte[8];
 		    		is.read(buffer);
-		    		Log.d("GET TIME", (new Date().getTime()) - Long.parseLong(new String(buffer)) + "");
+		    		long timeNow = new Date().getTime();
+		    		long diff = Long.parseLong(new String(buffer));
+		    		long result =  timeNow - diff;
+		    		Log.d("GET TIME",  result + "");
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
