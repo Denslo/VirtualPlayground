@@ -1,31 +1,25 @@
 package com.example.virtualplayground.activites;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Set;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.UUID;
 
 import com.example.virtualplayground.R;
-import com.example.virtualplayground.R.id;
-import com.example.virtualplayground.R.layout;
-import com.example.virtualplayground.infrastructures.BTListAdapter;
+
+
+
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.v4.widget.ListViewAutoScrollHelper;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 
 public class Client extends Activity {
@@ -102,8 +96,23 @@ public class Client extends Activity {
 	        manageConnectedSocket(mmSocket);
 	    }
 	    
-	    private void manageConnectedSocket(BluetoothSocket mmSocket2) {
-			Log.d("Coon","sdf");
+	    private void manageConnectedSocket(BluetoothSocket mSocket) {
+	    	InputStream is;
+	    	OutputStream os;
+			try {
+				is = mSocket.getInputStream();
+				os = mSocket.getOutputStream();
+				while(true) {
+		    		byte[] buffer = new byte[8];
+		    		is.read(buffer);
+		    		os.write(buffer);
+		    		
+		    	}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
 			
 		}
 

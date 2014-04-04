@@ -1,8 +1,11 @@
 package com.example.virtualplayground.activites;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -71,9 +74,9 @@ public class Host extends Activity {
 			BluetoothServerSocket tmp = null;
 			try {
 
-				//Method getUuidsMethod = BluetoothAdapter.class.getDeclaredMethod("getUuids", null);
+				// Method getUuidsMethod = BluetoothAdapter.class.getDeclaredMethod("getUuids", null);
 
-				//ParcelUuid[] uuids = (ParcelUuid[]) getUuidsMethod.invoke(mBluetoothAdapter, null);
+				// ParcelUuid[] uuids = (ParcelUuid[]) getUuidsMethod.invoke(mBluetoothAdapter, null);
 
 				// MY_UUID is the app's UUID string, also used by the client code
 				UUID a = UUID.fromString(uuid);
@@ -108,8 +111,24 @@ public class Host extends Activity {
 		}
 
 		private void manageConnectedSocket(BluetoothSocket socket) {
-			Log.d("CONNETION", "SDFD");
-
+			OutputStream os;
+			InputStream is;
+			//while (true) {
+				Long sendDate = new Date().getTime();
+				try {
+					os = socket.getOutputStream();
+					os.write(sendDate.toString().getBytes());
+					Log.d("SEND TIME", sendDate.toString());
+					
+					is = socket.getInputStream();
+		    		byte[] buffer = new byte[8];
+		    		is.read(buffer);
+		    		Log.d("GET TIME", (new Date().getTime()) - Long.parseLong(new String(buffer)) + "");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			//}
 		}
 
 		/** Will cancel the listening socket, and cause the thread to finish */
